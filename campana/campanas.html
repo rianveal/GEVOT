@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" type="image/x-icon" href="../image/GEVOT-icono.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Plataforma web para la administración de votantes de una campaña politica">
+  <meta name="author" content="Ricardo Andres Velasquez Alvis">
+  <meta name="keywords" content="politica,votante,gestión,campaña">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>GEVOT - Campaña</title>
+  <link rel="stylesheet" href="../css/materialize.min.css">
+  <link rel="stylesheet" href="../css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="../css/estilos.css">
+</head>
+<body>
+  <!-- Dropdown Structure -->
+  <ul id="dropdown1" class="dropdown-content">
+      <li><a href="#!">Opcion</a></li>
+      <li><a href="#!">Opcion</a></li>
+      <li class="divider"></li>
+      <li><a href="#!">Salir</a></li>
+  </ul>
+  <!-- NAVBAR - HEADER -->
+  <div class="navbar-fixed">
+    <nav class="nav-extended">
+      <div class="nav-wrapper indigo darken-4">
+        <a href="#!" class="brand-logo" style="margin-left: 10px;">GEVOT</a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="#" data-target="slide-out" class="sidenav-trigger" style="display: block;"><i class="material-icons">menu</i></a></li>
+          <!-- Dropdown Trigger -->
+          <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Ares Deuz<i class="material-icons right">arrow_drop_down</i></a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  <div class="container contenedor-principal">
+    <div class="row">
+      <div class="section">
+        <h5>CM001 | Unidos venceremos</h5>
+        <p>Administración de campaña</p>
+      </div>
+      <div class="divider"></div>
+      <div class="row"></div>
+      <div class="row"></div>
+      <div class="row">
+        <table class="striped responsive-table" id="tablaCampana">
+          <thead>
+            <tr>
+              <th>DOCUMENTO</th>
+              <th>PERSONA</th>
+              <th>CARGO</th>
+              <th>PLAN</th>
+            </tr>
+          </thead>
+  
+          <tbody>
+            <tr>
+              <td><a class="modal-trigger tooltipped deep-purple-text" data-position="right" data-tooltip="Administrar" href="#modalAdministrarPersonaCampana"><b>45001001</b></a></td>
+              <td>Maria A. Perez Ojeda</td>
+              <td>Concejal</td>
+              <td>Plan básico</td>
+            </tr>
+            <tr>
+              <td><a class="modal-trigger tooltipped deep-purple-text" data-position="right" data-tooltip="Administrar" href="#modalAdministrarPersonaCampana"><b>45001002</b></a></td>
+              <td>Monica Sofia Muñoz Serna</td>
+              <td>Lider</td>
+              <td>Plan básico</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div id="modalAdministrarPersonaCampana" class="modal">
+    <div class="modal-content">
+      <h4>Administrar datos de persona</h4>
+      <p>A continuación podrá modificar los datos de la persona seleccionada</p>
+      <form action="">
+        <div class="row">
+          <input type="hidden" name="documento" id="documento" value="">
+          <div class="input-field col s12 m12">
+            <input placeholder="nombre" id="nombre" name="nombre" type="text" class="validate">
+            <label for="nombre">Persona</label>
+          </div>
+          <div class="input-field col s12 m4">
+            <input placeholder="cargo" id="cargoActual" name="cargoActual" type="text" readonly>
+            <label for="cargoActual">Cargo actual</label>
+          </div>
+          <div class="input-field col s12 m4">
+            <select>
+              <option value="" disabled selected>Seleccione</option>
+              <option value="1">Edil</option>
+              <option value="2">Alcalde</option>
+              <option value="3">Asamblea</option>
+              <option value="3">Consejal</option>
+              <option value="3">Líder</option>
+            </select>
+            <label>Actualizar cargo</label>
+          </div>
+        </div>  
+      
+        <div class="modal-footer">
+          <button class="btn btn-large waves-effect waves-light indigo darken-4" type="submit" id="btnActualizarPersonaCampana" name="btnActualizarPersonaCampana">Actualizar
+            <i class="material-icons right">autorenew</i>
+          </button>
+          <a href="#!" class="modal-close waves-effect waves-green btn-flat">Salir</a>
+        </div>
+      </form>
+    </div>
+  </div>    
+
+  <div id="modalAgregarPersona" class="modal">
+    <div class="modal-content">
+      <h4>Agregar persona</h4>
+      <p>Por favor digite los datos de la persona</p>
+      <form action="">
+        <div class="row">
+          <div class="input-field col s12 m4">
+            <input placeholder="Número de documento" id="cedula" name="cedula" type="text" class="validate">
+            <label for="cedula">No. de documento</label>
+          </div>
+          <div class="col s12 m2">
+            <a class="waves-effect waves-light btn indigo darken-4 tooltipped" data-position="right" data-tooltip="Validar"
+              style="margin-top: 20px;" id="btnValidarPersona"><i class="material-icons">verified_user</i></a>
+          </div>
+          <div class="col s12 m4">
+            <p>PERSONA YA EXISTE</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12 m4">
+            <select id="tipoDocumento" name="tipoDocumento">
+              <option value="1" selected>Cedula de ciudadania</option>
+              <option value="2">Cedula de extranjería</option>
+            </select>
+            <label>Tipo de identificación</label>
+          </div>
+          <div class="input-field col s12 m4">
+            <input placeholder="Primer nombre" id="primerNombre" name="primerNombre" type="text" class="validate">
+            <label for="primerNombre">Primer nombre</label>
+          </div>
+          <div class="input-field col s12 m4">
+            <input placeholder="Segundo nombre" id="segundoNombre" name="segundoNombre" type="text" class="validate">
+            <label for="segundoNombre">Segundo nombre</label>
+          </div>
+          <div class="input-field col s12 m4">
+            <input placeholder="Primer apellido" id="primerApellido" name="primerApellido" type="text" class="validate">
+            <label for="primerApellido">Primer apellido</label>
+          </div>
+          <div class="input-field col s12 m4">
+            <input placeholder="Segundo apellido" id="segundoApellido" name="segundoApellido" type="text" class="validate">
+            <label for="segundoApellido">Segundo apellido</label>
+          </div>
+          <div class="input-field col s12 m4">
+            <select id="cargo" name="cargo">
+              <option value="" disabled selected>Seleccione</option>
+              <option value="1">Edil</option>
+              <option value="2">Alcalde</option>
+              <option value="3">Asamblea</option>
+              <option value="3">Consejal</option>
+              <option value="3">Líder</option>
+            </select>
+            <label>Cargo</label>
+          </div>
+          <div class="input-field col s12 m3">
+            <input placeholder="Barrio" id="barrio" name="barrio" type="text" class="validate">
+            <label for="barrio">Barrio</label>
+          </div> 
+          <div class="input-field col s12 m6">
+            <input placeholder="Dirección" id="direccion" name="direccion" type="text" class="validate">
+            <label for="direccion">Dirección</label>
+          </div> 
+          <div class="input-field col s12 m3">
+            <input placeholder="Número" id="numCelular" name="numCelular" type="number" class="validate">
+            <label for="numCelular">No. de celular</label>
+          </div> 
+          <div class="input-field col s12 m4">
+            <input placeholder="Número(s) de telefono" id="numTelefono" name="numTelefono" type="text" class="validate">
+            <label for="numTelefono">Número(s) de telefono</label>
+          </div> 
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-large waves-effect waves-light indigo darken-4" type="submit" 
+          id="btnAgregarPersona" name="btnAgregarPersona">Registrar
+            <i class="material-icons right">done</i>
+          </button>
+          <a href="#!" class="modal-close waves-effect waves-green btn-flat">Salir</a>
+        </div>
+      </form>
+    </div>
+  </div>    
+
+  <div id="modalAdministrarCampana" class="modal">
+    <div class="modal-content">
+      <h4>Administrar campaña</h4>
+      <p>A continuación los datos de la campaña</p>
+      <form action="">
+        <div class="row">
+          <input type="hidden" name="idCampana" id="idCampana" value="">
+        <div class="input-field col s12 m12">
+          <textarea class="materialize-textarea" id="descripcion" name="descripcion" 
+          placeholder="Descripción"></textarea>
+          <label for="textarea1">Descripción</label>
+        </div>
+        <div class="input-field col s12 m12">
+          <input placeholder="Candidato" id="candidatoActual" name="candidatoActual" type="text" readonly>
+          <label for="candidatoActual">Candidato</label>
+        </div>
+        <div class="input-field col s12 m4">
+          <input placeholder="tipo plan" id="tipoPlan" name="tipoPlan" type="text" readonly>
+          <label for="tipoPlan">Tipo plan</label>
+        </div>
+        <div class="input-field col s12 m4">
+          <input placeholder="Digitadores" id="digitadorePlan" name="digitadorePlan" type="text" readonly> 
+          <label for="digitadorePlan">Cant. Digitadores</label>
+        </div>
+        <div class="input-field col s12 m4">
+          <input placeholder="Digitadores" id="digitadoreActuales" name="digitadoreActuales" type="text" readonly>
+          <label for="digitadoreActuales">Cant. Digitadores actuales</label>
+        </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-large waves-effect waves-light indigo darken-4" 
+          type="submit" id="btnActualizarCampana" name="btnActualizarCampana">Actualizar
+            <i class="material-icons right">autorenew</i>
+          </button>
+          <a href="#!" class="modal-close waves-effect waves-green btn-flat">Salir</a>
+        </div>
+      </form>
+    </div>
+  </div>      
+
+  <div id="modalSubirMasivo" class="modal">
+    <div class="modal-content">
+      <h4>Subir registros</h4>
+      <p>A continuación realizará el proceso de subir masivamente datos de personas</p>
+      <form action="">
+        <div class="row">
+          <input type="hidden" name="documentoCandidato" name="documentoCandidato" value="">
+          <div class="input-field col s12 m12">
+            <input placeholder="Candidato" id="candidatoSubidaMasiva" name="candidatoSubidaMasiva" type="text" readonly>
+            <label for="candidatoSubidaMasiva">Candidato</label>
+          </div>
+          <div class="file-field input-field">
+            <div class="btn indigo darken-1">
+              <span>Archivo</span>
+              <input type="file">
+            </div>
+            <div class="file-path-wrapper">
+              <input class="file-path validate" type="text">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-large waves-effect waves-light indigo darken-4" 
+          type="submit" id="btnActualizarCampana" name="btnActualizarCampana">Cargar
+            <i class="material-icons right">cloud_upload</i>
+          </button>
+          <a href="#!" class="modal-close waves-effect waves-green btn-flat">Salir</a>
+        </div>
+      </form>
+    </div>
+  </div>        
+
+  <div class="fixed-action-btn">
+    <a class="btn-floating btn-large deep-orange accent-3">
+      <i class="large material-icons">more_horiz</i>
+    </a>
+    <ul>
+      <li><a class="btn-floating deep-orange accent-2 modal-trigger tooltipped" data-position="left" 
+        data-tooltip="Subir masivo" href="#modalSubirMasivo"><i class="material-icons">cloud_upload</i></a></li>
+      <li><a class="btn-floating deep-orange accent-2 modal-trigger tooltipped" data-position="left" 
+        data-tooltip="Administrar campaña" href="#modalAdministrarCampana"><i class="material-icons">edit</i></a></li>
+      <li><a class="btn-floating deep-orange accent-2 modal-trigger tooltipped" data-position="left" 
+        data-tooltip="Agregar persona" href="#modalAgregarPersona"><i class="material-icons">person_add</i></a></li>  
+    </ul>
+  </div>
+
+  <ul id="slide-out" class="sidenav">
+    <li><div class="user-view">
+      <div class="background">
+        <img src="../image/fondo-side-nav1.png">
+      </div>
+      <a href="#user"><img class="circle" src="../image/girl.png"></a>
+      <a href="#name"><span class="white-text name">Maria Perez</span></a>
+      <a href="#email"><span class="white-text email">maria.perez@xyz.com</span></a>
+    </div></li>
+    <li>
+      <ul class="collapsible">
+        <li>
+          <div class="collapsible-header"><i class="material-icons">stars</i>Campaña</div>
+          <div class="collapsible-body">
+            <ul style="margin-left: 35px;">
+              <li><a class="waves-effect waves-light">Administrar</a></li>
+              <li><a class="waves-effect waves-light">Datos estadisticos</a></li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <div class="collapsible-header"><i class="material-icons">person</i>Personas</div>
+          <div class="collapsible-body">
+            <ul style="margin-left: 35px;">
+              <li><a class="waves-effect waves-light">Votantes</a></li>
+              <li><a class="waves-effect waves-light">Líderes</a></li>
+              <li><a class="waves-effect waves-light">Digitadores</a></li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <div class="collapsible-header"><i class="material-icons">supervisor_account</i>Usuarios</div>
+          <div class="collapsible-body">
+            <ul style="margin-left: 35px;">
+              <li><a class="waves-effect waves-light">Administrar</a></li>
+              <li><a class="waves-effect waves-light">Perfiles</a></li>
+              <li><a class="waves-effect waves-light">Roles</a></li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <div class="collapsible-header"><i class="material-icons">settings</i>Configuración</div>
+          <div class="collapsible-body">
+            <ul style="margin-left: 35px;">
+              <li><a class="waves-effect waves-light">Puntos de votación</a></li>
+              <li><a class="waves-effect waves-light">Zonas / barrios</a></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </li>
+    <li><div class="divider"></div></li>
+    <li><a class="waves-effect waves-light sidenav-close" href="#!"><i class="material-icons left">navigate_before</i>Ocultar</a></li>
+  </ul>
+
+  <script src="../js/jquery-3.4.1.min.js"></script>
+  <script src="../js/materialize.min.js"></script>
+  <script src="../js/jquery.dataTables.min.js"></script>
+  <script src="../js/table/dataTables.buttons.min.js"></script>
+  <script src="../js/table/jszip.min.js"></script>
+  <script src="../js/table/pdfmake.min.js"></script>
+  <script src="../js/table/vfs_fonts.js"></script>
+  <script src="../js/table/buttons.html5.min.js"></script>
+  <script src="../js/sweetalert2.all.min.js"></script>
+  <script src="../js/inicializaciones.js"></script>
+  <script src="js/app.campana.js"></script>
+</body>
+</html>
